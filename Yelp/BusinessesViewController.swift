@@ -137,6 +137,10 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
 
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        businessTableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if (!isMoreDataLoading) {
             // Calculate the position of one screen length before the bottom of the results
