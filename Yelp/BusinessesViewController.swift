@@ -8,11 +8,13 @@
 
 import UIKit
 
-class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
     @IBOutlet weak var businessTableView: UITableView!
     
     var businesses: [Business]!
+    var filteredBusinesses: [Business]!
+    let searchBar = UISearchBar()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,17 +23,22 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         businessTableView.rowHeight = UITableViewAutomaticDimension
         businessTableView.estimatedRowHeight = 120
         
-        Business.searchWithTerm(term: "Thai", completion: { (businesses: [Business]?, error: Error?) -> Void in
+        filteredBusinesses = businesses
+        self.searchBar.delegate = self
+        searchBar.sizeToFit()
+        navigationItem.titleView = searchBar
+        
+        Business.searchWithTerm(term: "", completion: { (businesses: [Business]?, error: Error?) -> Void in
             
-            self.businesses = businesses
+            self.filteredBusinesses = businesses
             self.businessTableView.reloadData()
             
-            if let businesses = businesses {
+            /*if let businesses = businesses {
                 for business in businesses {
                     print(business.name!)
                     print(business.address!)
                 }
-            }
+            }*/
             
             }
         )
@@ -49,8 +56,8 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if businesses != nil {
-            return businesses!.count
+        if filteredBusinesses != nil {
+            return filteredBusinesses!.count
         }
         else {
             return 0
@@ -59,7 +66,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = businessTableView.dequeueReusableCell(withIdentifier: "BusinessCell", for: indexPath) as! BusinessCell
-        cell.business = businesses[indexPath.row]
+        cell.business = filteredBusinesses![indexPath.row]
         
         return cell
     }
@@ -67,6 +74,33 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        /*filteredBusinesses = searchText.isEmpty ? businesses : businesses!.filter {
+            ($0["name"]! as AnyObject).contains(searchText)
+        }*/
+        
+        /*filteredBusinesses = searchText.isEmpty ? businesses : businesses.filter { (item: Business) -> Bool in
+            return item.range(of: searchText, options: .caseInsensitive) != nil
+        }*/
+        //let searchedText = "Thai " + searchBar.text!
+        
+        Business.searchWithTerm(term: searchText, completion: { (bs: [Business]?, error: Error?) -> Void in
+            self.filteredBusinesses = bs
+        })
+        
+        businessTableView.reloadData()
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.searchBar.showsCancelButton = true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.searchBar.showsCancelButton = false
+        self.searchBar.text = ""
+        self.searchBar.resignFirstResponder()
     }
     
     /*
