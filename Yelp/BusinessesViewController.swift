@@ -120,7 +120,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         )*/
         
         Business.searchWithTerm(term: "", completion: { (businesses: [Business]?, error: Error?) -> Void in
-            
+ 
             self.filteredBusinesses = businesses
             
             // Update flag
