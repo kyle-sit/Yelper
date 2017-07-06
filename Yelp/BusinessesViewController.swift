@@ -2,24 +2,29 @@
 //  BusinessesViewController.swift
 //  Yelp
 //
-//  Created by Timothy Lee on 4/23/15.
-//  Copyright (c) 2015 Timothy Lee. All rights reserved.
+//  Created by Kyle Sit on 1/1/17.
+//  Copyright (c) 2016 Kyle Sit. All rights reserved.
 //
 
 import UIKit
 
 class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UIScrollViewDelegate {
     
+    //table outlet
     @IBOutlet weak var businessTableView: UITableView!
     
+    //instance variables
     var businesses: [Business]!
     var filteredBusinesses: [Business]!
     let searchBar = UISearchBar()
     var isMoreDataLoading = false
     var loadingMoreView:InfiniteScrollActivityView?
     
+    
+    //viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //TableView setup
         businessTableView.delegate = self
         businessTableView.dataSource = self
@@ -42,7 +47,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         insets.bottom += InfiniteScrollActivityView.defaultHeight
         businessTableView.contentInset = insets
         
-        Business.searchWithTerm(term: "", completion: { (businesses: [Business]?, error: Error?) -> Void in
+        Business.searchWithTerm(term: "Thai", completion: { (businesses: [Business]?, error: Error?) -> Void in
             
             self.filteredBusinesses = businesses
             self.businessTableView.reloadData()
@@ -69,6 +74,8 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
          */
     }
     
+    
+    //function to obtain number of rows based off of number of businesses
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if filteredBusinesses != nil {
             return filteredBusinesses!.count
@@ -77,7 +84,8 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
             return 0
         }
     }
-        
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = businessTableView.dequeueReusableCell(withIdentifier: "BusinessCell", for: indexPath) as! BusinessCell
         cell.business = filteredBusinesses![indexPath.row]
@@ -85,11 +93,8 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         return cell
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
+    //function to implement a searchbar
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         Business.searchWithTerm(term: searchText, completion: { (bs: [Business]?, error: Error?) -> Void in
             self.filteredBusinesses = bs
@@ -98,10 +103,14 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         businessTableView.reloadData()
     }
     
+    
+    //function to being searching
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         self.searchBar.showsCancelButton = true
     }
     
+    
+    //function for canceling a search
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.searchBar.showsCancelButton = false
         self.searchBar.text = ""
@@ -137,9 +146,12 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
 
     }
     
+    
+    //function for deselecting cell
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         businessTableView.deselectRow(at: indexPath, animated: true)
     }
+    
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if (!isMoreDataLoading) {
@@ -162,6 +174,14 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
             }
         }
     }
+    
+    
+    //memory warning
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
     
     /*
      // MARK: - Navigation

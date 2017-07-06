@@ -3,7 +3,7 @@
 //  Yelp
 //
 //  Created by Kyle Sit on 2/20/17.
-//  Copyright © 2017 Timothy Lee. All rights reserved.
+//  Copyright © 2017 Kyle Sit. All rights reserved.
 //
 
 import UIKit
