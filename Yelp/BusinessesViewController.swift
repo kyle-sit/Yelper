@@ -37,6 +37,11 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         searchBar.sizeToFit()
         navigationItem.titleView = searchBar
         
+        //UI specifications for navigation bar
+        if let navigationBar = navigationController?.navigationBar {
+            navigationBar.barTintColor = UIColor(red: 0.9176, green: 0, blue: 0, alpha: 1.0)
+        }
+        
         // Set up Infinite Scroll loading indicator
         let frame = CGRect(x: 0, y: businessTableView.contentSize.height, width: businessTableView.bounds.size.width, height: InfiniteScrollActivityView.defaultHeight)
         loadingMoreView = InfiniteScrollActivityView(frame: frame)
