@@ -15,6 +15,11 @@ class DetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //UI specifications for navigation bar red
+        if let navigationBar = navigationController?.navigationBar {
+            navigationBar.barTintColor = UIColor(red: 0.9176, green: 0, blue: 0, alpha: 1.0)
+        }
 
         // Do any additional setup after loading the view.
     }

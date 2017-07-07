@@ -37,7 +37,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         searchBar.sizeToFit()
         navigationItem.titleView = searchBar
         
-        //UI specifications for navigation bar
+        //UI specifications for navigation bar red
         if let navigationBar = navigationController?.navigationBar {
             navigationBar.barTintColor = UIColor(red: 0.9176, green: 0, blue: 0, alpha: 1.0)
         }
@@ -52,29 +52,18 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         insets.bottom += InfiniteScrollActivityView.defaultHeight
         businessTableView.contentInset = insets
         
+        //First load of the tableview
         Business.searchWithTerm(term: "Thai", completion: { (businesses: [Business]?, error: Error?) -> Void in
             
             self.filteredBusinesses = businesses
             self.businessTableView.reloadData()
-            
-            /*if let businesses = businesses {
-                for business in businesses {
-                    print(business.name!)
-                    print(business.address!)
-                }
-            }*/
-            
+
             }
         )
         
         /* Example of Yelp search with more search options specified
          Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
          self.businesses = businesses
-         
-         for business in businesses {
-         print(business.name!)
-         print(business.address!)
-         }
          }
          */
     }
@@ -96,6 +85,12 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         cell.business = filteredBusinesses![indexPath.row]
         
         return cell
+    }
+    
+    
+    //function for deselecting cell
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        businessTableView.deselectRow(at: indexPath, animated: true)
     }
     
     
@@ -122,19 +117,12 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         self.searchBar.resignFirstResponder()
     }
     
+    
+    //function called for infinite scroll to load more businesses
     func loadMoreData() {
         
-        // ... Create the NSURLRequest (myRequest) ...
-        
-        // Configure session so that completion handler is executed on main UI thread
-        /*let session = NSURLSession(
-            configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
-            delegate:nil,
-            delegateQueue:NSOperationQueue.mainQueue()
-        )*/
-        
-        Business.searchWithTerm(term: "", completion: { (businesses: [Business]?, error: Error?) -> Void in
- 
+        Business.searchWithTerm(term: "Thai", completion: { (businesses: [Business]?, error: Error?) -> Void in
+            
             self.filteredBusinesses = businesses
             
             // Update flag
@@ -142,24 +130,20 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
             
             // Stop the loading indicator
             self.loadingMoreView!.stopAnimating()
-                                                                        
+            
             // ... Use the new data to update the data source ...
-                                                                        
+            
             // Reload the tableView now that there is new data
             self.businessTableView.reloadData()
         })
-
+        
     }
     
     
-    //function for deselecting cell
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        businessTableView.deselectRow(at: indexPath, animated: true)
-    }
-    
-    
+    //function for infinite scrolling using the loadMoreData
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if (!isMoreDataLoading) {
+            
             // Calculate the position of one screen length before the bottom of the results
             let scrollViewContentHeight = businessTableView.contentSize.height
             let scrollOffsetThreshold = scrollViewContentHeight - businessTableView.bounds.size.height

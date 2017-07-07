@@ -135,7 +135,14 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Yelper" id="HFY-H2-q7Z"/>
+                    <navigationItem key="navigationItem" title="Yelper" id="HFY-H2-q7Z">
+                        <barButtonItem key="leftBarButtonItem" title="Filter" id="kza-4x-Uy6">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Map" id="5Mk-lZ-Z8F">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="businessTableView" destination="7iM-3B-hEa" id="c34-qX-r3Z"/>
                     </connections>
