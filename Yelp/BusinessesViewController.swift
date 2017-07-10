@@ -19,6 +19,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     let searchBar = UISearchBar()
     var isMoreDataLoading = false
     var loadingMoreView:InfiniteScrollActivityView?
+    var countedOffset = 20
     
     
     //viewDidLoad
@@ -33,7 +34,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         
         //SearchBar Setup
         filteredBusinesses = businesses
-        self.searchBar.delegate = self
+        searchBar.delegate = self
         searchBar.sizeToFit()
         navigationItem.titleView = searchBar
         
@@ -53,7 +54,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         businessTableView.contentInset = insets
         
         //First load of the tableview
-        Business.searchWithTerm(term: "Thai", completion: { (businesses: [Business]?, error: Error?) -> Void in
+        Business.searchWithTerm(term: "", completion: { (businesses: [Business]?, error: Error?) -> Void in
             
             self.filteredBusinesses = businesses
             self.businessTableView.reloadData()
@@ -121,9 +122,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     //function called for infinite scroll to load more businesses
     func loadMoreData() {
         
-        Business.searchWithTerm(term: "Thai", completion: { (businesses: [Business]?, error: Error?) -> Void in
-            
-            self.filteredBusinesses = businesses
+        /*Business.searchWithTerm(term: "", completion: { (businesses: [Business]?, error: Error?) -> Void in
             
             // Update flag
             self.isMoreDataLoading = false
@@ -132,10 +131,31 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
             self.loadingMoreView!.stopAnimating()
             
             // ... Use the new data to update the data source ...
+            self.filteredBusinesses.append(contentsOf: businesses!)
             
             // Reload the tableView now that there is new data
             self.businessTableView.reloadData()
-        })
+        })*/
+        
+        Business.searchWithTerm(term: "", sort: nil, categories: nil, deals: nil, offset: countedOffset) { (businesses: [Business]?, error: Error?) -> Void in
+            
+            // Update flag
+            self.isMoreDataLoading = false
+            
+            //Update Offset
+            self.countedOffset += 20
+            
+            // Stop the loading indicator
+            self.loadingMoreView!.stopAnimating()
+            
+            // ... Use the new data to update the data source ...
+            self.filteredBusinesses.append(contentsOf: businesses!)
+            
+            // Reload the tableView now that there is new data
+            self.businessTableView.reloadData()
+            
+        }
+
         
     }
     

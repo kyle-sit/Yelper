@@ -10,6 +10,8 @@ import UIKit
 
 class InfiniteScrollActivityView: UIView {
     
+    //This class is strictly meant to create a progress loading indicator
+    
     var activityIndicatorView: UIActivityIndicatorView = UIActivityIndicatorView()
     static let defaultHeight:CGFloat = 60.0
     
