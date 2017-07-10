@@ -81,6 +81,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     
+    //function to populate cells in the tableview
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = businessTableView.dequeueReusableCell(withIdentifier: "BusinessCell", for: indexPath) as! BusinessCell
         cell.business = filteredBusinesses![indexPath.row]
@@ -97,15 +98,26 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     
     //function to implement a searchbar
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
         Business.searchWithTerm(term: searchText, completion: { (bs: [Business]?, error: Error?) -> Void in
             self.filteredBusinesses = bs
+            
+            self.businessTableView.reloadData()
         })
         
-        businessTableView.reloadData()
+        /*DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
+            Business.searchWithTerm(term: searchText, completion: { (bs: [Business]?, error: Error?) -> Void in
+                self.filteredBusinesses = bs
+                
+                self.businessTableView.reloadData()
+            })
+        })*/
+        
+        //businessTableView.reloadData()
     }
     
     
-    //function to being searching
+    //function to begin searching
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         self.searchBar.showsCancelButton = true
     }
