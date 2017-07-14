@@ -99,21 +99,14 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     //function to implement a searchbar
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
+        countedOffset = 0
+        
         Business.searchWithTerm(term: searchText, completion: { (bs: [Business]?, error: Error?) -> Void in
             self.filteredBusinesses = bs
             
             self.businessTableView.reloadData()
         })
         
-        /*DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
-            Business.searchWithTerm(term: searchText, completion: { (bs: [Business]?, error: Error?) -> Void in
-                self.filteredBusinesses = bs
-                
-                self.businessTableView.reloadData()
-            })
-        })*/
-        
-        //businessTableView.reloadData()
     }
     
     

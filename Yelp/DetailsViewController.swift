@@ -12,6 +12,14 @@ import MapKit
 class DetailsViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var backgroundImage: UIImageView!
+    @IBOutlet weak var businessNameLabel: UILabel!
+    @IBOutlet weak var typeLabel: UILabel!
+    @IBOutlet weak var reviewsLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var lineLabel1: UILabel!
+    @IBOutlet weak var lineLabel2: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +29,9 @@ class DetailsViewController: UIViewController {
             navigationBar.barTintColor = UIColor(red: 0.9176, green: 0, blue: 0, alpha: 1.0)
         }
 
+        //rotate the lines separating the buttons
+        lineLabel1.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+        lineLabel2.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
         // Do any additional setup after loading the view.
     }
 
