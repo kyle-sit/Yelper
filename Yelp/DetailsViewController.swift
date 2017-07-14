@@ -11,8 +11,13 @@ import MapKit
 
 class DetailsViewController: UIViewController {
 
+    //instance variables
+    var business: Business!
+    
+    // UI outlets
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var backgroundImage: UIImageView!
+    @IBOutlet weak var ratingImageView: UIImageView!
     @IBOutlet weak var businessNameLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var reviewsLabel: UILabel!
@@ -32,7 +37,16 @@ class DetailsViewController: UIViewController {
         //rotate the lines separating the buttons
         lineLabel1.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
         lineLabel2.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
-        // Do any additional setup after loading the view.
+        
+        //Populating the labels and images with appropriate content
+        businessNameLabel.text = business.name
+        backgroundImage.setImageWith(business.imageURL!)
+        typeLabel.text = business.categories
+        addressLabel.text = business.address
+        reviewsLabel.text = "\(business.reviewCount!) Reviews"
+        ratingImageView.setImageWith(business.ratingImageURL!)
+        distanceLabel.text = business.distance
+        
     }
 
     override func didReceiveMemoryWarning() {

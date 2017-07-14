@@ -293,6 +293,7 @@
                         <outlet property="lineLabel1" destination="HDf-ox-gaI" id="4Zz-Aq-Oii"/>
                         <outlet property="lineLabel2" destination="25E-Kj-uvP" id="vsr-9o-lPm"/>
                         <outlet property="mapView" destination="QIi-LC-g69" id="qdy-EA-WGM"/>
+                        <outlet property="ratingImageView" destination="VqX-jn-bvk" id="Cjl-wW-4n6"/>
                         <outlet property="reviewsLabel" destination="09w-qo-fPX" id="u8y-p9-Xxp"/>
                         <outlet property="typeLabel" destination="09W-IS-94n" id="NFV-Th-K1M"/>
                     </connections>
