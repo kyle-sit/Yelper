@@ -26,6 +26,8 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var lineLabel1: UILabel!
     @IBOutlet weak var lineLabel2: UILabel!
     
+    
+    //viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,14 +49,38 @@ class DetailsViewController: UIViewController {
         ratingImageView.setImageWith(business.ratingImageURL!)
         distanceLabel.text = business.distance
         
+        //setting map components
+        // set initial location in SF
+        //let initialLocation = CLLocation(latitude: 37.785771, longitude: -122.406165)
+        let initialLocation = CLLocation(latitude: business.latitude!, longitude: business.longitude!)
+        centerMapOnLocation(location: initialLocation)
+        
+        //show business on map
+        let point = MapPoint(title: business.name!,
+                              locationName: business.city!,
+                              category: business.categories!,
+                              coordinate: CLLocationCoordinate2D(latitude: business.latitude!, longitude: business.longitude!))
+        
+        mapView.addAnnotation(point)
+        
     }
 
+    
+    //memory warning
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
 
+    let regionRadius: CLLocationDistance = 1000
+    func centerMapOnLocation(location: CLLocation) {
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
+                                                                  regionRadius * 2.0, regionRadius * 2.0)
+        mapView.setRegion(coordinateRegion, animated: true)
+    }
+    
+    
     /*
     // MARK: - Navigation
 

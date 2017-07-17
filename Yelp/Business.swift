@@ -18,6 +18,9 @@ class Business: NSObject {
     let distance: String?
     let ratingImageURL: URL?
     let reviewCount: NSNumber?
+    let latitude: Double?
+    let longitude: Double?
+    let city: String?
     
     //constructor passing in NSDict
     init(dictionary: NSDictionary) {
@@ -49,8 +52,14 @@ class Business: NSObject {
                 }
                 address += neighborhoods![0] as! String
             }
+            
         }
         self.address = address
+        
+        //set latitude and longitude
+        self.latitude = (location!["coordinate"] as? NSDictionary)!["latitude"] as? Double
+        self.longitude = (location!["coordinate"] as? NSDictionary)!["longitude"] as? Double
+        self.city = location!["city"] as? String
         
         //set categories of food
         let categoriesArray = dictionary["categories"] as? [[String]]
