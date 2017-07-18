@@ -199,12 +199,20 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
      
     // Segue to detailsViewController from individual cell
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let cell = sender as! UITableViewCell
-        let indexPath = businessTableView.indexPath(for: cell)
-        let business = filteredBusinesses![indexPath!.row]
+        if segue.identifier == "detailsSegue" {
+                let cell = sender as! UITableViewCell
+                let indexPath = businessTableView.indexPath(for: cell)
+                let business = filteredBusinesses![indexPath!.row]
         
-        let detailsViewController = segue.destination as! DetailsViewController
-        detailsViewController.business = business
+                let detailsViewController = segue.destination as! DetailsViewController
+                detailsViewController.business = business
+        }
+        else if segue.identifier == "filterSegue" {
+            
+        }
+        else { //mapSegue
+            
+        }
         
     }
  
