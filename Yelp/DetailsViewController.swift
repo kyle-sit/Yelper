@@ -42,7 +42,9 @@ class DetailsViewController: UIViewController {
         
         //Populating the labels and images with appropriate content
         businessNameLabel.text = business.name
-        backgroundImage.setImageWith(business.imageURL!)
+        if business.imageURL != nil {
+            backgroundImage.setImageWith(business.imageURL!)
+        }
         typeLabel.text = business.categories
         addressLabel.text = business.address
         reviewsLabel.text = "\(business.reviewCount!) Reviews"
