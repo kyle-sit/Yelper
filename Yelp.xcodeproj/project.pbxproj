@@ -18,6 +18,7 @@
 		27883D551F1D60D0009A6CD9 /* MapPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27883D541F1D60D0009A6CD9 /* MapPoint.swift */; };
 		27883D571F1EB26D009A6CD9 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27883D561F1EB26D009A6CD9 /* FiltersViewController.swift */; };
 		27883D591F1EB27E009A6CD9 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27883D581F1EB27E009A6CD9 /* MapViewController.swift */; };
+		27883D5B1F1FF636009A6CD9 /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27883D5A1F1FF636009A6CD9 /* FilterCell.swift */; };
 		278DDCE51E5683A7002C2925 /* BusinessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278DDCE41E5683A7002C2925 /* BusinessCell.swift */; };
 		27FB5F6D1E5BA31E007C1403 /* InfiniteScrollActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FB5F6C1E5BA31E007C1403 /* InfiniteScrollActivityView.swift */; };
 		27FB5F6F1E5BA674007C1403 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FB5F6E1E5BA674007C1403 /* DetailsViewController.swift */; };
@@ -52,6 +53,7 @@
 		27883D541F1D60D0009A6CD9 /* MapPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapPoint.swift; sourceTree = "<group>"; };
 		27883D561F1EB26D009A6CD9 /* FiltersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
 		27883D581F1EB27E009A6CD9 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		27883D5A1F1FF636009A6CD9 /* FilterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
 		278DDCE41E5683A7002C2925 /* BusinessCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessCell.swift; sourceTree = "<group>"; };
 		27FB5F6C1E5BA31E007C1403 /* InfiniteScrollActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfiniteScrollActivityView.swift; sourceTree = "<group>"; };
 		27FB5F6E1E5BA674007C1403 /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				278DDCE41E5683A7002C2925 /* BusinessCell.swift */,
+				27883D5A1F1FF636009A6CD9 /* FilterCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 			files = (
 				27FB5F6D1E5BA31E007C1403 /* InfiniteScrollActivityView.swift in Sources */,
 				27883D551F1D60D0009A6CD9 /* MapPoint.swift in Sources */,
+				27883D5B1F1FF636009A6CD9 /* FilterCell.swift in Sources */,
 				278DDCE51E5683A7002C2925 /* BusinessCell.swift in Sources */,
 				27883D591F1EB27E009A6CD9 /* MapViewController.swift in Sources */,
 				22AAAA9C1AEA1EC300A544AF /* BusinessesViewController.swift in Sources */,
