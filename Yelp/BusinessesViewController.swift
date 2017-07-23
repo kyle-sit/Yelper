@@ -211,9 +211,10 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
             
         }
         else { //mapSegue
-            
+            let destinationNavigationController = segue.destination as! UINavigationController
+            let mapViewController = destinationNavigationController.topViewController as! MapViewController
+            mapViewController.businesses = filteredBusinesses
         }
-        
     }
  
     

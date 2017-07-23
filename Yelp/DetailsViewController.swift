@@ -75,6 +75,7 @@ class DetailsViewController: UIViewController {
     }
     
 
+    //helper method
     let regionRadius: CLLocationDistance = 1000
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
