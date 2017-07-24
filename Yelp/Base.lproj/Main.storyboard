@@ -198,6 +198,9 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PQm-aJ-sdL">
                                                     <rect key="frame" x="285" y="16" width="51" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="OnSwitch1:" destination="Xa8-y5-OfM" eventType="valueChanged" id="QEh-dk-S3Q"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -230,6 +233,9 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kq2-hm-9z4">
                                                     <rect key="frame" x="300" y="22" width="51" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="OnSwitch2:" destination="Xa8-y5-OfM" eventType="valueChanged" id="f2h-FD-VT2"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -252,6 +258,9 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Search" id="bAG-XL-kIB">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="confirmSearch:" destination="Xa8-y5-OfM" id="2DR-x3-J9H"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>

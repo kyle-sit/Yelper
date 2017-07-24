@@ -14,6 +14,17 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var filtersTableView1: UITableView!
     @IBOutlet weak var filtersTableView2: UITableView!
     
+    //category variables for searching
+    var orderDelivery = false
+    var orderPickup = false
+    var makeReservation = false
+    var offeringDeal = false
+    var hotAndNew = false
+    var openNow = false
+    
+    //delegate for passing info to source VC
+    //var delegate:FiltersViewControllerDelegate!
+    
     
     //viewDidLoad
     override func viewDidLoad() {
@@ -29,6 +40,14 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         if let navigationBar = navigationController?.navigationBar {
             navigationBar.barTintColor = UIColor(red: 0.9176, green: 0, blue: 0, alpha: 1.0)
         }
+        
+        //setting all search vars to false
+        orderDelivery = false
+        orderPickup = false
+        makeReservation = false
+        offeringDeal = false
+        hotAndNew = false
+        openNow = false
     }
 
     
@@ -87,11 +106,70 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     
+    //turn on options for first 3 switches
+    @IBAction func OnSwitch1(_ sender: Any) {
+        let cell1 = filtersTableView2.dequeueReusableCell(withIdentifier: "FilterCell1") as! FilterCell
+        
+        //individually name each option
+        if cell1.label1.text == "Order Delivery" {
+            if cell1.switch1.isOn == true {
+                orderDelivery = true
+            }
+        }
+        else if cell1.label1.text == "Order Pickup" {
+            if cell1.switch1.isOn == true {
+                orderPickup = true
+            }
+        }
+        else if cell1.label1.text == "Make a Reservation" {
+            if cell1.switch1.isOn == true {
+                makeReservation = true
+            }
+        }
+    }
+    
+    
+    //turn on options for second 3 swtiches
+    @IBAction func OnSwitch2(_ sender: Any) {
+        let cell2 = filtersTableView2.dequeueReusableCell(withIdentifier: "FilterCell2") as! FilterCell
+        
+        //individually name each option
+        if cell2.label2.text == "Offering a Deal" {
+            if cell2.switch2.isOn == true {
+                offeringDeal = true
+            }
+        }
+        else if cell2.label2.text == "Hot and New" {
+            if cell2.switch2.isOn == true {
+                hotAndNew = true
+            }
+        }
+        else if cell2.label2.text == "Open Now" {
+            if cell2.switch2.isOn == true {
+                openNow = true
+            }
+        }
+    }
+    
+    
     //cancel the view
     @IBAction func onCancel(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     
+    
+    //make the search
+    @IBAction func confirmSearch(_ sender: Any) {
+        let root = self.presentingViewController as! BusinessesViewController
+        root.orderDelivery = orderDelivery
+        root.orderPickup = orderPickup
+        root.makeReservation = makeReservation
+        root.offeringDeal = offeringDeal
+        root.hotAndNew = hotAndNew
+        root.openNow = openNow
+        print(orderPickup)
+        self.dismiss(animated: true, completion: nil)
+    }
     
     
     //Memory Warning
@@ -100,7 +178,7 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
     // MARK: - Navigation
 
@@ -112,3 +190,9 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
     */
 
 }
+
+/*protocol FiltersViewControllerDelegate
+{
+    func sendValue(value : NSString)
+}*/
+

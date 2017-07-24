@@ -21,10 +21,22 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     var loadingMoreView:InfiniteScrollActivityView?
     var countedOffset = 20
     
+    //category variables for searching
+    var orderDelivery = false
+    var orderPickup = false
+    var makeReservation = false
+    var offeringDeal = false
+    var hotAndNew = false
+    var openNow = false
+    
+    //delegate for passing info to modal VC
+    //var delegate:FiltersViewControllerDelegate!
     
     //viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(orderPickup)
         
         //TableView setup
         businessTableView.delegate = self
