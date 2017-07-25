@@ -36,6 +36,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print(orderDelivery)
         print(orderPickup)
         
         //TableView setup

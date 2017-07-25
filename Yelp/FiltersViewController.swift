@@ -108,22 +108,24 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
     
     //turn on options for first 3 switches
     @IBAction func OnSwitch1(_ sender: Any) {
-        let cell1 = filtersTableView2.dequeueReusableCell(withIdentifier: "FilterCell1") as! FilterCell
+        let cell1 = filtersTableView1.dequeueReusableCell(withIdentifier: "FilterCell1") as! FilterCell
         
         //individually name each option
         if cell1.label1.text == "Order Delivery" {
             if cell1.switch1.isOn == true {
-                orderDelivery = true
+                self.orderDelivery = true
+                print(orderDelivery)
             }
         }
         else if cell1.label1.text == "Order Pickup" {
             if cell1.switch1.isOn == true {
-                orderPickup = true
+                self.orderPickup = true
+                print(orderPickup)
             }
         }
         else if cell1.label1.text == "Make a Reservation" {
             if cell1.switch1.isOn == true {
-                makeReservation = true
+                self.makeReservation = true
             }
         }
     }
@@ -136,17 +138,17 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
         //individually name each option
         if cell2.label2.text == "Offering a Deal" {
             if cell2.switch2.isOn == true {
-                offeringDeal = true
+                self.offeringDeal = true
             }
         }
         else if cell2.label2.text == "Hot and New" {
             if cell2.switch2.isOn == true {
-                hotAndNew = true
+                self.hotAndNew = true
             }
         }
         else if cell2.label2.text == "Open Now" {
             if cell2.switch2.isOn == true {
-                openNow = true
+                self.openNow = true
             }
         }
     }
@@ -160,15 +162,18 @@ class FiltersViewController: UIViewController, UITableViewDataSource, UITableVie
     
     //make the search
     @IBAction func confirmSearch(_ sender: Any) {
-        let root = self.presentingViewController as! BusinessesViewController
+        self.dismiss(animated: true, completion: nil)
+        let parent = self.presentingViewController as! UINavigationController
+        let root = parent.topViewController as! BusinessesViewController
         root.orderDelivery = orderDelivery
         root.orderPickup = orderPickup
         root.makeReservation = makeReservation
         root.offeringDeal = offeringDeal
         root.hotAndNew = hotAndNew
         root.openNow = openNow
+        print(orderDelivery)
         print(orderPickup)
-        self.dismiss(animated: true, completion: nil)
+        //self.dismiss(animated: true, completion: nil)
     }
     
     
