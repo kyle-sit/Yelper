@@ -29,15 +29,13 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     var hotAndNew = false
     var openNow = false
     
-    //delegate for passing info to modal VC
-    //var delegate:FiltersViewControllerDelegate!
-    
     //viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print(orderDelivery)
         print(orderPickup)
+        print(YelpClient.sharedInstance)
         
         //TableView setup
         businessTableView.delegate = self

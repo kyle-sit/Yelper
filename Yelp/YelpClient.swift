@@ -2,7 +2,7 @@
 //  YelpClient.swift
 //  Yelp
 //
-//  Created by Kyle Sit on 9/19/14.
+//  Created by Kyle Sit on 9/19/16.
 //  Copyright (c) 2016 Kyle Sit. All rights reserved.
 //
 
@@ -16,6 +16,8 @@ let yelpConsumerKey = "vxKwwcR_NMQ7WaEiQBK_CA"
 let yelpConsumerSecret = "33QCvh5bIF5jIHR5klQr7RtBDhQ"
 let yelpToken = "uRcRswHFYa1VkDrGV6LAW2F8clGh5JHV"
 let yelpTokenSecret = "mqtKIxMIR4iBtBPZCmCLEb-Dz3Y"
+let yelpClientID = "9DsZ7vkV4rwZYRGc1sAS_g"
+let yelpClientSecret = "t83EllTNJVRWWi614VVq2EX3uev2O7rRkmVz43WrecWcnmqVrOAKe2RQsNYZiYYf"
 
 enum YelpSortMode: Int {
     case bestMatched = 0, distance, highestRated
@@ -28,7 +30,7 @@ class YelpClient: BDBOAuth1RequestOperationManager {
     //MARK: Shared Instance
     
     static let sharedInstance = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
